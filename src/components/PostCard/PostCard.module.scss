@@ -1,0 +1,15 @@
+.post {
+  h2 {
+    font-size: 1.75rem;
+    color: var(--color-heading);
+  }
+
+  p {
+    margin: 0.5rem 0 1.5rem;
+    font-size: 1.125rem;
+  }
+
+  & + .post {
+    margin-top: 3rem;
+  }
+}
