@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { FiCalendar, FiUser } from 'react-icons/fi';
 
 import { Post } from '../../templates/Home';
-import styles from './postcard.module.scss';
+import styles from './PostCard.module.scss';
 import commonStyles from '../../styles/common.module.scss';
 
 interface PostCardProps {
