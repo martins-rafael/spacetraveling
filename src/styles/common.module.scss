@@ -1,1 +1,26 @@
-// TODO
+.container {
+  margin: 2.5rem auto;
+  padding: 0 1rem;
+  max-width: var(--spacing-container);
+}
+
+.info {
+  display: flex;
+
+  div {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    color: var(--color-info);
+
+    svg {
+      margin-right: 0.5rem;
+      height: 1.25rem;
+      width: 1.25rem;
+    }
+
+    & + div {
+      margin-left: 1.625rem;
+    }
+  }
+}
