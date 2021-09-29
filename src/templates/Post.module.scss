@@ -1,0 +1,42 @@
+.image {
+  width: 100%;
+  height: 25rem;
+  object-fit: cover;
+}
+
+.post {
+  margin-top: 5rem;
+
+  h1 {
+    margin-bottom: 1.5rem;
+    font-size: 3rem;
+  }
+}
+
+.content {
+  margin-top: 4rem;
+
+  h2 {
+    margin-bottom: 4rem;
+    font-size: 2.25rem;
+  }
+
+  p {
+    margin: 2rem 0;
+    font-size: 1.125rem;
+    line-height: 1.575rem;
+    text-align: justify;
+  }
+
+  a {
+    color: var(--color-highlight);
+  }
+
+  ul {
+    padding: 1rem;
+
+    li {
+      margin: 1rem 0;
+    }
+  }
+}
