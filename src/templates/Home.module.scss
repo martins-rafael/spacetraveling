@@ -1,0 +1,17 @@
+.postsContainer {
+  margin-top: 1.5rem;
+
+  button {
+    margin-top: 4rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-highlight);
+    background: transparent;
+    border: none;
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
