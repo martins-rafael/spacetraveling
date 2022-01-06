@@ -6,6 +6,7 @@ import { FiCalendar, FiUser, FiClock } from 'react-icons/fi';
 import { formatDate } from '../utils/format-date';
 
 import Header from '../components/Header';
+import Comments from '../components/Comments';
 import commonStyles from '../styles/common.module.scss';
 import styles from './Post.module.scss';
 
@@ -95,6 +96,8 @@ export default function PostTemplate({ post }: PostProps): JSX.Element {
             />
           </article>
         ))}
+
+        <Comments />
       </main>
     </>
   );
