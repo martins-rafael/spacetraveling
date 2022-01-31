@@ -4,8 +4,8 @@ import { getPrismicClient } from '../../services/prismic';
 
 import PostTemplate, { PostData, PostProps } from '../../templates/Post';
 
-export default function Post({ post }: PostProps): JSX.Element {
-  return <PostTemplate post={post} />;
+export default function Post({ post, navigation }: PostProps): JSX.Element {
+  return <PostTemplate post={post} navigation={navigation} />;
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -28,6 +28,24 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params;
   const prismic = getPrismicClient();
   const response = await prismic.getByUID('posts', String(slug), {});
+
+  const prevPost = await prismic.query(
+    [Prismic.Predicates.at('document.type', 'posts')],
+    {
+      pageSize: 1,
+      after: response.id,
+      orderings: '[document.first_publication_date]',
+    }
+  );
+  const nextPost = await prismic.query(
+    [Prismic.Predicates.at('document.type', 'posts')],
+    {
+      pageSize: 1,
+      after: response.id,
+      orderings: '[document.first_publication_date desc]',
+    }
+  );
+
   const post: PostData = {
     uid: response.uid,
     first_publication_date: response.first_publication_date,
@@ -46,7 +64,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 
   return {
-    props: { post },
+    props: {
+      post,
+      navigation: {
+        prevPost: prevPost?.results,
+        nextPost: nextPost?.results,
+      },
+    },
     revalidate: 60 * 30,
   };
 };

@@ -1,5 +1,6 @@
 /* eslint-disable react/no-danger */
 import Head from 'next/head';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { RichText } from 'prismic-dom';
 import { FiCalendar, FiUser, FiClock } from 'react-icons/fi';
@@ -29,11 +30,30 @@ export interface PostData {
   };
 }
 
-export interface PostProps {
-  post: PostData;
+export interface NavigationData {
+  prevPost: {
+    uid: string;
+    data: {
+      title: string;
+    };
+  }[];
+  nextPost: {
+    uid: string;
+    data: {
+      title: string;
+    };
+  }[];
 }
 
-export default function PostTemplate({ post }: PostProps): JSX.Element {
+export interface PostProps {
+  post: PostData;
+  navigation: NavigationData;
+}
+
+export default function PostTemplate({
+  post,
+  navigation,
+}: PostProps): JSX.Element {
   const router = useRouter();
 
   if (router.isFallback) return <p>Carregando...</p>;
@@ -96,6 +116,26 @@ export default function PostTemplate({ post }: PostProps): JSX.Element {
             />
           </article>
         ))}
+
+        <section className={styles.navigation}>
+          {navigation?.prevPost.length > 0 && (
+            <div>
+              <h3>{navigation.prevPost[0].data.title}</h3>
+              <Link href={`/post/${navigation.prevPost[0].uid}`}>
+                <a>Post anterior</a>
+              </Link>
+            </div>
+          )}
+
+          {navigation?.nextPost.length > 0 && (
+            <div>
+              <h3>{navigation.nextPost[0].data.title}</h3>
+              <Link href={`/post/${navigation.nextPost[0].uid}`}>
+                <a>Próximo post</a>
+              </Link>
+            </div>
+          )}
+        </section>
 
         <Comments />
       </main>
