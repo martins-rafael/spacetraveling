@@ -11,6 +11,14 @@
     margin-bottom: 1.5rem;
     font-size: 3rem;
   }
+
+  span {
+    display: block;
+    margin-top: 1.5rem;
+    font-style: italic;
+    font-size: 0.875rem;
+    color: var(--color-info);
+  }
 }
 
 .content {

@@ -14,6 +14,7 @@ import styles from './Post.module.scss';
 export interface PostData {
   uid?: string;
   first_publication_date: string | null;
+  last_publication_date: string | null;
   data: {
     title: string;
     subtitle?: string;
@@ -58,7 +59,7 @@ export default function PostTemplate({
 
   if (router.isFallback) return <p>Carregando...</p>;
 
-  const { first_publication_date, data } = post;
+  const { first_publication_date, last_publication_date, data } = post;
   const { title, author, banner, content } = data;
   const formatedDate = formatDate(first_publication_date);
   const readingTime = content.reduce((total, item) => {
@@ -71,6 +72,13 @@ export default function PostTemplate({
 
     return total + time;
   }, 0);
+
+  const isPostEdited = first_publication_date !== last_publication_date;
+  let editDate;
+
+  if (isPostEdited) {
+    editDate = formatDate(last_publication_date);
+  }
 
   return (
     <>
@@ -105,6 +113,8 @@ export default function PostTemplate({
             {readingTime} min
           </div>
         </div>
+
+        {isPostEdited && <span>* editado em {editDate}</span>}
 
         {content.map(item => (
           <article className={styles.content} key={item.heading}>
