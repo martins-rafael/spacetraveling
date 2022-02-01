@@ -9,7 +9,7 @@ export default function Comments(): JSX.Element {
     script.setAttribute('async', 'true');
     script.setAttribute('repo', 'martins-rafael/spacetraveling');
     script.setAttribute('issue-term', 'pathname');
-    script.setAttribute('theme', 'github-dark');
+    script.setAttribute('theme', 'dark-blue');
     anchor.appendChild(script);
   }, []);
 
